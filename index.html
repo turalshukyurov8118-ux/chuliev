@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Chuliev | Барбершоп</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f3f0;
+            color: #1a1a2a;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --green: #00b894;
+            --green-dark: #019874;
+            --green-glow: #00b89430;
+            --card-bg: #ffffff;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Хедер */
+        header {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2d2d3a;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .btn-book-nav {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #1a1a2a;
+        }
+
+        .section-title span {
+            color: var(--green);
+        }
+
+        /* Услуги с фото */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0,184,148,0.15);
+        }
+
+        .service-img {
+            height: 220px;
+            background: #d9d2c8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            color: #7a6a5a;
+            font-size: 14px;
+        }
+
+        .service-img i {
+            font-size: 48px;
+            color: var(--green);
+        }
+
+        .service-info {
+            padding: 24px;
+        }
+
+        .service-info h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--green);
+            margin: 12px 0 8px;
+        }
+
+        .service-desc {
+            color: #5a5a6a;
+            font-size: 14px;
+        }
+
+        /* О нас */
+        .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1.2;
+        }
+
+        .about-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .cert-badge {
+            background: var(--green-glow);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 10px 0;
+            color: var(--green-dark);
+        }
+
+        .about-img {
+            flex: 1;
+            background: #e0d8ce;
+            border-radius: 28px;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            color: #7a6a5a;
+        }
+
+        /* Отзывы */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+
+        .review-media {
+            margin-top: 18px;
+            background: #f0ede8;
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--green);
+        }
+
+        /* Фото/видео */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .media-item {
+            background: #e8e0d6;
+            border-radius: 24px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            color: #7a6a5a;
+        }
+
+        /* Форма */
+        .form-card {
+            background: white;
+            border-radius: 32px;
+            padding: 40px;
+            max-width: 650px;
+            margin: 0 auto;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 10px 0 18px;
+            border: 1px solid #ddd;
+            border-radius: 60px;
+            font-family: inherit;
+        }
+
+        button[type="submit"] {
+            background: var(--green);
+            color: white;
+            font-weight: 700;
+            border: none;
+            padding: 14px;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .admin-panel {
+            background: #f0ede8;
+            border-radius: 32px;
+            padding: 30px;
+        }
+
+        .request-item {
+            background: white;
+            padding: 14px 20px;
+            border-radius: 60px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-left: 4px solid var(--green);
+        }
+
+        footer {
+            background: #1e1e2a;
+            color: #aaa;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            border-radius: 24px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .navbar { flex-direction: column; }
+            .hero h1 { font-size: 38px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">CHULIEV</div>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#services-m">Мужские</a></li>
+                <li><a href="#services-w">Женские</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#media">Фото/Видео</a></li>
+                <li><a href="#admin">Админ</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <button class="btn-book-nav" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Записаться</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- ГЛАВНАЯ -->
+    <section id="home" style="background: linear-gradient(135deg, #ffffff, #f0f3f0);">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h1 style="font-size: 52px;">Chuliev <br><span style="color: var(--green);">стиль с характером</span></h1>
+                    <p style="font-size: 18px; margin: 20px 0;">25 лет стажа. Работал на «Доме‑2». Делал стрижки и окрашивание участникам и участницам проекта.</p>
+                    <button class="btn-book-nav" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Записаться →</button>
+                </div>
+                <div class="about-img">
+                    <i class="fas fa-cut" style="font-size: 48px; color: var(--green);"></i>
+                    <p>📸 ФОТО БАРБЕРА</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О НАС -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title"><h2>О <span>нас</span></h2></div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Барбер Чулиев — 25 лет в индустрии</h3>
+                    <div class="cert-badge">🎬 Работал на телепередаче «Дом‑2»</div>
+                    <div class="cert-badge">✂️ Делал стрижки и окрашивание участникам и участницам</div>
+                    <p><strong>📍 Минская, 15Б</strong></p>
+                    <p>Чулиев — мастер с характером и телевизионным опытом. Его руки создавали образы для проекта «Дом‑2». Сегодня он принимает в собственном барбершопе, где каждый клиент получает максимум стиля и внимания.</p>
+                </div>
+                <div class="about-img">
+                    <i class="fas fa-star" style="font-size: 40px; color: var(--green);"></i>
+                    <p>📸 ФОТО С ТЕЛЕПРОЕКТА</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- МУЖСКИЕ УСЛУГИ (С ФОТО) -->
+    <section id="services-m" style="background: #faf8f5;">
+        <div class="container">
+            <div class="section-title"><h2>Мужские <span>услуги</span></h2></div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img"><i class="fas fa-cut"></i><span>📸 ФОТО СТРИЖКИ</span></div>
+                    <div class="service-info"><h3>Мужская стрижка</h3><div class="price">1200 ₽</div><div class="service-desc">Классика, модель, под машинку</div></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img"><i class="fas fa-beard"></i><span>📸 ФОТО БОРОДЫ</span></div>
+                    <div class="service-info"><h3>Борода / тонировка</h3><div class="price">800 ₽</div><div class="service-desc">Оформление, каменное бритьё, тонировка</div></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img"><i class="fas fa-tint"></i><span>📸 ФОТО ОКРАШИВАНИЯ</span></div>
+                    <div class="service-info"><h3>Окрашивание</h3><div class="price">2500 ₽</div><div class="service-desc">Пиксель, седина, тонирование</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЖЕНСКИЕ УСЛУГИ (С ФОТО) -->
+    <section id="services-w">
+        <div class="container">
+            <div class="section-title"><h2>Женские <span>услуги</span></h2></div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img"><i class="fas fa-scissors"></i><span>📸 ФОТО СТРИЖКИ</span></div>
+                    <div class="service-info"><h3>Женская стрижка</h3><div class="price">1800 ₽</div><div class="service-desc">Любой длины, укладка</div></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img"><i class="fas fa-palette"></i><span>📸 ФОТО ОКРАШИВАНИЯ</span></div>
+                    <div class="service-info"><h3>Окрашивание</h3><div class="price">3500 ₽</div><div class="service-desc">Шатуш, балаяж, air touch</div></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img"><i class="fas fa-spa"></i><span>📸 ФОТО УХОДА</span></div>
+                    <div class="service-info"><h3>Уход</h3><div class="price">2000 ₽</div><div class="service-desc">Ботокс, кератин, ламинирование</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section id="reviews" style="background: #faf8f5;">
+        <div class="container">
+            <div class="section-title"><h2>Отзывы</h2></div>
+            <div class="reviews-grid">
+                <div class="review-card"><strong>Алексей</strong><div class="review-text">«Классная атмосфера, Чулиев реально шарит. Стрижка 🔥»</div><div class="review-media">📸 ФОТО / ВИДЕО ОТЗЫВА</div></div>
+                <div class="review-card"><strong>Екатерина</strong><div class="review-text">«Окрашивание супер, мастер с характером!»</div><div class="review-media">🎥 ВИДЕО-ОТЗЫВ</div></div>
+                <div class="review-card"><strong>Денис</strong><div class="review-text">«Бороду привёл в порядок, рекомендую!»</div><div class="review-media">📸 ФОТО ДО/ПОСЛЕ</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФОТО И ВИДЕО -->
+    <section id="media">
+        <div class="container">
+            <div class="section-title"><h2>Фото & видео</h2></div>
+            <div class="media-grid">
+                <div class="media-item"><i class="fas fa-image fa-2x" style="color: var(--green);"></i> 📸 ФОТО РАБОТ</div>
+                <div class="media-item"><i class="fas fa-video fa-2x" style="color: var(--green);"></i> 🎬 ВИДЕО ПРОЦЕССА</div>
+                <div class="media-item"><i class="fas fa-tv fa-2x" style="color: var(--green);"></i> 📺 ФОТО С «ДОМА‑2»</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗАПИСЬ ОНЛАЙН -->
+    <section id="booking" style="background: #faf8f5;">
+        <div class="container">
+            <div class="section-title"><h2>Запись <span>онлайн</span></h2></div>
+            <div class="form-card">
+                <form id="bookingForm">
+                    <input type="text" id="name" placeholder="Ваше имя" required>
+                    <input type="tel" id="phone" placeholder="Телефон" required>
+                    <select id="service">
+                        <option>Мужская стрижка</option><option>Борода</option><option>Женская стрижка</option><option>Окрашивание</option>
+                    </select>
+                    <input type="date" id="date">
+                    <textarea rows="2" placeholder="Пожелания..."></textarea>
+                    <button type="submit">✂️ Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- АДМИН-ПАНЕЛЬ -->
+    <section id="admin">
+        <div class="container">
+            <div class="section-title"><h2>Админ-панель</h2></div>
+            <div class="admin-panel" id="adminRequests">
+                <div class="request-item"><span><strong>Демо:</strong> Иван | +7 999 123-45-67 | Стрижка</span><span>Новая</span></div>
+                <p style="margin-top:20px;">⭐ Новые заявки появляются здесь</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title"><h2>Контакты</h2></div>
+            <div class="about-grid">
+                <div>
+                    <p><i class="fas fa-map-marker-alt" style="color: var(--green);"></i> <strong>Адрес:</strong> Минская улица, 15Б</p>
+                    <p><i class="fas fa-phone-alt"></i> <strong>Телефон:</strong> +7 (XXX) XXX-XX-XX</p>
+                    <p><i class="fab fa-instagram" style="color: var(--green);"></i> <strong>Instagram:</strong> @chuliev.barber</p>
+                    <p><i class="fas fa-clock"></i> <strong>Режим:</strong> 10:00 – 21:00</p>
+                </div>
+                <div style="flex:1"><iframe src="https://yandex.ru/map-widget/v1/?ll=37.617698,55.755864&z=12" width="100%" height="250" frameborder="0"></iframe><p>📍 Минская 15Б</p></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 Chuliev — Барбершоп. Работал на «Доме‑2». Минская, 15Б</p>
+    </div>
+</footer>
+
+<script>
+    const form = document.getElementById('bookingForm');
+    const adminContainer = document.getElementById('adminRequests');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const service = document.getElementById('service').value;
+        if(name && phone) {
+            const newRequest = document.createElement('div');
+            newRequest.className = 'request-item';
+            newRequest.innerHTML = `<span><strong>${name}</strong> ${phone} | ${service}</span><span style="color:#00b894;">Новая</span>`;
+            adminContainer.insertBefore(newRequest, adminContainer.firstChild);
+            form.reset();
+            alert('✅ Заявка отправлена! Администратор увидит её в панели.');
+        } else { alert('Заполните имя и телефон'); }
+    });
+</script>
+</body>
+</html>
