@@ -22,7 +22,6 @@
 
         :root {
             --green: #00b894;
-            --green-dark: #019874;
             --card-bg: #ffffff;
         }
 
@@ -32,7 +31,6 @@
             padding: 0 20px;
         }
 
-        /* ========== ШАПКА ========== */
         header {
             background: white;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
@@ -54,18 +52,17 @@
             color: var(--green);
         }
 
-        /* Десктопное меню */
         .nav-links {
             display: flex;
             gap: 25px;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
             text-decoration: none;
             font-weight: 600;
             color: #2d2d3a;
-            transition: 0.2s;
         }
 
         .nav-links a:hover {
@@ -82,7 +79,6 @@
             cursor: pointer;
         }
 
-        /* Бургер-меню (только для телефона) */
         .burger {
             display: none;
             font-size: 28px;
@@ -90,7 +86,6 @@
             color: var(--green);
         }
 
-        /* Мобильное меню (скрытое) */
         .mobile-menu {
             display: none;
             flex-direction: column;
@@ -108,17 +103,10 @@
             font-size: 18px;
         }
 
-        .mobile-menu a:hover {
-            color: var(--green);
+        .mobile-menu.show {
+            display: flex;
         }
 
-        .mobile-menu .btn-book-nav {
-            display: inline-block;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* ========== ОСТАЛЬНЫЕ СТИЛИ ========== */
         section {
             padding: 60px 0;
         }
@@ -149,11 +137,6 @@
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            transition: 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
         }
 
         .service-img {
@@ -178,14 +161,73 @@
 
         .service-info h3 {
             font-size: 22px;
-            margin-bottom: 8px;
         }
 
         .price {
             font-size: 24px;
             font-weight: 800;
             color: var(--green);
-            margin: 10px 0 8px;
+            margin: 10px 0;
+        }
+
+        /* ========== НОВЫЙ РАЗДЕЛ: УЧАСТНИКИ ДОМА-2 ========== */
+        .participants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .participant-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .participant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .participant-img {
+            height: 200px;
+            background: #d9d2c8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            color: #7a6a5a;
+        }
+
+        .participant-img i {
+            font-size: 48px;
+            color: var(--green);
+        }
+
+        .participant-info {
+            padding: 20px;
+        }
+
+        .participant-info h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .participant-info p {
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .participant-video {
+            margin-top: 12px;
+            background: #f0ede8;
+            border-radius: 20px;
+            padding: 10px;
+            font-size: 13px;
+            color: var(--green);
         }
 
         .about-grid {
@@ -201,7 +243,6 @@
 
         .about-text h3 {
             font-size: 28px;
-            margin-bottom: 20px;
         }
 
         .cert-badge {
@@ -373,75 +414,44 @@
             margin: 15px 0;
         }
 
-        /* ========== МОБИЛЬНАЯ ВЕРСИЯ ========== */
         @media (max-width: 800px) {
             .nav-links, .navbar .btn-book-nav {
                 display: none;
             }
-            
             .burger {
                 display: block;
             }
-            
-            .mobile-menu.show {
+            .services-grid {
                 display: flex;
+                overflow-x: auto;
+                gap: 16px;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 15px;
             }
-            
-            .container {
-                padding: 0 16px;
+            .service-card {
+                min-width: 260px;
+                scroll-snap-align: start;
+                flex-shrink: 0;
             }
-            
-            section {
-                padding: 50px 0;
+            .participants-grid {
+                display: flex;
+                overflow-x: auto;
+                gap: 16px;
+                padding-bottom: 15px;
             }
-            
+            .participant-card {
+                min-width: 220px;
+                flex-shrink: 0;
+            }
             .section-title h2 {
-                font-size: 28px;
+                font-size: 26px;
             }
-            
-            .about-text h3 {
-                font-size: 24px;
-            }
-            
-            .about-img {
-                height: 220px;
-            }
-            
-            .service-img {
-                height: 170px;
-            }
-            
-            .service-info h3 {
-                font-size: 20px;
-            }
-            
-            .price {
-                font-size: 22px;
-            }
-            
-            .form-card {
-                padding: 25px;
-            }
-            
-            input, select, textarea {
-                padding: 12px 16px;
+            .btn-book-nav, button[type="submit"] {
+                padding: 12px 24px;
                 font-size: 16px;
             }
-            
-            .logo {
-                font-size: 22px;
-            }
-        }
-
-        /* Для очень маленьких телефонов */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .cert-badge {
-                font-size: 12px;
-                padding: 5px 14px;
+            section {
+                padding: 40px 0;
             }
         }
     </style>
@@ -457,6 +467,7 @@
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#services-m">Мужские</a></li>
                 <li><a href="#services-w">Женские</a></li>
+                <li><a href="#participants">Дом‑2</a></li>
                 <li><a href="#reviews">Отзывы</a></li>
                 <li><a href="#media">Фото/Видео</a></li>
                 <li><a href="#contact">Контакты</a></li>
@@ -469,6 +480,7 @@
             <a href="#about" onclick="closeMobileMenu()">О нас</a>
             <a href="#services-m" onclick="closeMobileMenu()">Мужские</a>
             <a href="#services-w" onclick="closeMobileMenu()">Женские</a>
+            <a href="#participants" onclick="closeMobileMenu()">Дом‑2</a>
             <a href="#reviews" onclick="closeMobileMenu()">Отзывы</a>
             <a href="#media" onclick="closeMobileMenu()">Фото/Видео</a>
             <a href="#contact" onclick="closeMobileMenu()">Контакты</a>
@@ -513,7 +525,36 @@
         </div>
     </section>
 
-    <section id="services-m" style="background: #faf8f5;">
+    <!-- НОВЫЙ РАЗДЕЛ: УЧАСТНИКИ ДОМА-2 -->
+    <section id="participants" style="background: #faf8f5;">
+        <div class="container">
+            <div class="section-title"><h2>Участники <span>«Дома‑2»</span></h2></div>
+            <div class="participants-grid">
+                <div class="participant-card">
+                    <div class="participant-img"><i class="fas fa-user-circle"></i><span>📸 ФОТО</span></div>
+                    <div class="participant-info"><h3>Ольга Рапунцель</h3><p>Участница 2021-2023</p><div class="participant-video">🎥 ВИДЕО / ОТЗЫВ</div></div>
+                </div>
+                <div class="participant-card">
+                    <div class="participant-img"><i class="fas fa-user-circle"></i><span>📸 ФОТО</span></div>
+                    <div class="participant-info"><h3>Никита Кузнецов</h3><p>Участник 2020-2022</p><div class="participant-video">🎥 ВИДЕО / ОТЗЫВ</div></div>
+                </div>
+                <div class="participant-card">
+                    <div class="participant-img"><i class="fas fa-user-circle"></i><span>📸 ФОТО</span></div>
+                    <div class="participant-info"><h3>Александра Гозман</h3><p>Участница 2019-2021</p><div class="participant-video">🎥 ВИДЕО / ОТЗЫВ</div></div>
+                </div>
+                <div class="participant-card">
+                    <div class="participant-img"><i class="fas fa-user-circle"></i><span>📸 ФОТО</span></div>
+                    <div class="participant-info"><h3>Илья Яббаров</h3><p>Участник 2020-2022</p><div class="participant-video">🎥 ВИДЕО / ОТЗЫВ</div></div>
+                </div>
+                <div class="participant-card">
+                    <div class="participant-img"><i class="fas fa-user-circle"></i><span>📸 ФОТО</span></div>
+                    <div class="participant-info"><h3>Анастасия Костенко</h3><p>Участница 2020-2021</p><div class="participant-video">🎥 ВИДЕО / ОТЗЫВ</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services-m">
         <div class="container">
             <div class="section-title"><h2>Мужские <span>услуги</span></h2></div>
             <div class="services-grid">
@@ -533,7 +574,7 @@
         </div>
     </section>
 
-    <section id="services-w">
+    <section id="services-w" style="background: #faf8f5;">
         <div class="container">
             <div class="section-title"><h2>Женские <span>услуги</span></h2></div>
             <div class="services-grid">
@@ -553,7 +594,7 @@
         </div>
     </section>
 
-    <section id="reviews" style="background: #faf8f5;">
+    <section id="reviews">
         <div class="container">
             <div class="section-title"><h2>Отзывы</h2></div>
             <div class="reviews-grid">
@@ -564,7 +605,7 @@
         </div>
     </section>
 
-    <section id="media">
+    <section id="media" style="background: #faf8f5;">
         <div class="container">
             <div class="section-title"><h2>Фото & видео</h2></div>
             <div class="media-grid">
@@ -575,7 +616,7 @@
         </div>
     </section>
 
-    <section id="booking" style="background: #faf8f5;">
+    <section id="booking">
         <div class="container">
             <div class="section-title"><h2>Запись <span>онлайн</span></h2></div>
             <div class="form-card">
@@ -638,18 +679,13 @@
 </div>
 
 <script>
-    // Мобильное меню
     function toggleMobileMenu() {
-        const menu = document.getElementById('mobileMenu');
-        menu.classList.toggle('show');
+        document.getElementById('mobileMenu').classList.toggle('show');
     }
-    
     function closeMobileMenu() {
-        const menu = document.getElementById('mobileMenu');
-        menu.classList.remove('show');
+        document.getElementById('mobileMenu').classList.remove('show');
     }
 
-    // Админ-панель
     let requests = JSON.parse(localStorage.getItem('chuliev_requests')) || [];
 
     function saveRequests() {
@@ -667,7 +703,7 @@
         requests.forEach((req) => {
             const div = document.createElement('div');
             div.className = 'request-item';
-            div.innerHTML = `<span><strong>${req.name}</strong> ${req.phone} | ${req.service} | ${req.date || 'дата не указана'}</span><span>Новая</span>`;
+            div.innerHTML = `<span><strong>${req.name}</strong> ${req.phone} | ${req.service} | ${req.date || ''}</span><span>Новая</span>`;
             container.appendChild(div);
         });
     }
@@ -684,7 +720,7 @@
                 requests.unshift({ name, phone, service, date });
                 saveRequests();
                 form.reset();
-                alert('✅ Заявка отправлена! Администратор увидит её в панели.');
+                alert('✅ Заявка отправлена!');
                 if (document.getElementById('adminPanel').classList.contains('visible')) {
                     renderAdminPanel();
                 }
@@ -702,8 +738,7 @@
         const password = document.getElementById('adminPassword').value;
         if (password === 'chuliev2025') {
             document.getElementById('passwordModal').style.display = 'none';
-            const panel = document.getElementById('adminPanel');
-            panel.classList.add('visible');
+            document.getElementById('adminPanel').classList.add('visible');
             renderAdminPanel();
         } else {
             alert('Неверный пароль');
